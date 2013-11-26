@@ -1,0 +1,63 @@
+<html>
+	<head> <title> <%=  title %>  </title> 
+
+		<link rel="stylesheet" href="/stylesheets/style.css" type="text/css">
+		<script src="/javascripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+		<script src="/javascripts/client.js" type="text/javascript"></script>
+
+	</head>
+
+	<body>
+
+		<%=  include ../views/common/flash_message %>
+
+		<div class="site_wrapper">
+			
+			<div class="header">
+
+				<div class="logo">
+						<h1><a href="/"> Docker Manager </a> </h1>
+				</div>
+
+
+				<div class="top_nav">
+					<br/><br/>
+					<ul>  
+						<li <% if( typeof page !== 'undefined' && page ) { %>
+								<%= page === "upload_dockerfile" ? "class='active' " : " "  %>
+							<% } %>
+						 >  <a href="/" > Upload Dockerfile </a> </li>
+						 						
+						<li <% if( typeof page !== 'undefined' && page ) { %>
+								<%= page === "images_list" ? "class='active' " : " "  %>
+							<% } %>
+						 > <a href="/dockers/list" > Images </a> </li>
+
+						<li <% if( typeof page !== 'undefined' && page ) { %>
+								<%= page === "containers_list" ? "class='active' " : " " %>
+							<% } %>
+						 > <a href="/containers/list" >Containers </a> </li>
+
+
+
+
+					</ul>
+
+				</div>
+
+				<div class="clr"> </div>
+
+			</div> <!--/header -->
+
+
+			 <hr style="
+			    color: rgb(226, 226, 226);
+			    border-color: rgb(179, 93, 178);
+			    border-width: 1px;
+			    border-style: dashed;
+			"/>
+
+
+
+
+

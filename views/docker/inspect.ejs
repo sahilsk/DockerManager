@@ -1,0 +1,60 @@
+<% include ../../layouts/dashboard_layout_top %>
+
+
+<% if( statusCode === 200) { %>
+
+	<% include ../common/dockerImagePanel %>
+
+<% } else{ %>
+	
+	<div class="somethingWentWrong">
+		<span ><%= data %> </span>
+		<a href="/"> Create New Image </a>
+	</div>	
+
+<% } %>
+			
+
+
+<div class="inspectDataWrapper">
+
+
+<% { %>
+
+	<% if( typeof data === "object" ){ %>
+		<div class="key_val">
+
+			<% for(var k in data){ %>
+				<label> <%= k %> : </label>
+
+				<% if(  k === "container_config" || k === "config") { %>
+					<br/>
+					<% for(var l in data[k]){ %>
+						<label class='sub'> <%=l %> : </label>
+
+
+
+
+						<span class="sub"> <%= JSON.stringify( data[k][l]) %> </span> <br/>
+					<% }%> 	
+				
+				<% }else{ %>
+				<span> <%= data[k] %> </span>
+				<% } %>
+				<br/>
+			<% } %>
+
+		</div> <!--/key_val-->
+
+	<% } %>
+<% } %>
+
+
+</div> <!--/inspectDataWrapper -->
+
+
+
+
+
+<% include ../../layouts/dashboard_layout_bottom %>
+

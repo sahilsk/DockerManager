@@ -1,0 +1,64 @@
+<% include ../../layouts/dashboard_layout_top %>
+
+
+<Div class="operation_menu"> Selected Container: 
+	<span class="id" > <%= id %> <strong>  ( <%= data.State.Running? "Running.." : "Stoppped" %>) </strong> </span> 
+	<span class="status" > 
+
+		<% if( statusCode === 200){ %>
+			<a href="/containers/<%=id %>/toggle" > <%= data.State.Running? "Stop" : "Run" %>  </a>
+		<% } %>
+
+	</span>
+	<span class="kill"> <a href="/containers/<%=id %>/kill"> Kill  </a> </span>
+	<span class="delete"> <a href="/containers/<%=id %>/delete"> Remove &cross;  </a> </span>
+</Div>
+
+<br/>
+
+
+<div class="inspectDataWrapper">
+
+<% if( statusCode !== 200) { %>
+	<div class="somethingWentWrong">
+		<span ><%= data %> </span>
+	</div>
+
+<% }else{ %>
+
+	<% if( typeof data === "object" ){ %>
+		<div class="key_val">
+
+			<% for(var k in data){ %>
+				<label> <%= k %> : </label>
+
+				<% if(  k === "State" || k === "Config" || k === "NetworkSettings" ||  k === "Volumes" || k === "VolumesRW") { %>
+					<br/>
+					<% for(var l in data[k]){ %>
+						<label class='sub'> <%=l %> : </label>
+
+
+
+
+						<span class="sub"> <%= JSON.stringify( data[k][l]) %> </span> <br/>
+					<% }%> 	
+				
+				<% }else{ %>
+				<span> <%= data[k] %> </span>
+				<% } %>
+				<br/>
+			<% } %>
+
+		</div> <!--/key_val-->
+
+	<% } %>
+<% } %>
+
+
+</div> <!--/inspectDataWrapper -->
+
+
+
+
+<% include ../../layouts/dashboard_layout_bottom %>
+
